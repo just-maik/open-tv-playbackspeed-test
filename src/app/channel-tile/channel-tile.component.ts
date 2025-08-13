@@ -71,7 +71,7 @@ export class ChannelTileComponent implements OnDestroy, AfterViewInit {
     this.renderer.setStyle(element, "background", background);
   }
 
-  async click(record = false) {
+  async click(record = false, speed?: number) {
     if (this.starting === true) {
       try {
         await invoke("cancel_play", { channelId: this.channel?.id });
@@ -120,7 +120,8 @@ export class ChannelTileComponent implements OnDestroy, AfterViewInit {
     this.starting = true;
     this.memory.SetFocus.next(this.id);
     try {
-      await invoke("play", { channel: this.channel, record: record, recordPath: file });
+      // include optional speed param so backend can set mpv --speed
+      await invoke("play", { channel: this.channel, record: record, recordPath: file, speed: speed });
     } catch (e) {
       this.error.handleError(e);
     }

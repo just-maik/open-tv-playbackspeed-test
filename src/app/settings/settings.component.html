@@ -107,6 +107,30 @@
 
   <div class="row mt-3 align-items-center">
     <div class="col-4">
+      <span [ngbTooltip]="'Default playback speed applied when choosing Play (default). Per-play speeds in the context menu override this.'">
+        Default playback speed
+      </span>
+    </div>
+    <div class="col">
+      <select
+        (ngModelChange)="updateSettings()"
+        [(ngModel)]="settings.playback_speed"
+        class="form-control"
+      >
+        <option [ngValue]="0.25">0.25x</option>
+        <option [ngValue]="0.5">0.5x</option>
+        <option [ngValue]="0.75">0.75x</option>
+        <option [ngValue]="1">1x</option>
+        <option [ngValue]="1.25">1.25x</option>
+        <option [ngValue]="1.5">1.5x</option>
+        <option [ngValue]="2">2x</option>
+        <option [ngValue]="3">3x</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row mt-3 align-items-center">
+    <div class="col-4">
       <span>Re-stream port</span>
     </div>
     <div class="col">

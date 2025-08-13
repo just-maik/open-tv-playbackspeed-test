@@ -202,9 +202,10 @@ async fn play(
     channel: Channel,
     record: bool,
     record_path: Option<String>,
+    speed: Option<f32>,
     state: State<'_, Mutex<AppState>>,
 ) -> Result<(), String> {
-    mpv::play(channel, record, record_path, state)
+    mpv::play(channel, record, record_path, speed, state)
         .await
         .map_err(map_err_frontend)
 }

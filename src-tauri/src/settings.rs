@@ -10,6 +10,7 @@ pub const USE_STREAM_CACHING: &str = "useStreamingCaching";
 pub const RECORDING_PATH: &str = "recordingPath";
 pub const DEFAULT_VIEW: &str = "defaultView";
 pub const VOLUME: &str = "volume";
+pub const PLAYBACK_SPEED: &str = "playbackSpeed";
 pub const REFRESH_ON_START: &str = "refreshOnStart";
 pub const RESTREAM_PORT: &str = "restreamPort";
 pub const ENABLE_TRAY_ICON: &str = "enableTrayIcon";
@@ -27,6 +28,7 @@ pub fn get_settings() -> Result<Settings> {
         use_stream_caching: map.get(USE_STREAM_CACHING).and_then(|s| s.parse().ok()),
         default_view: map.get(DEFAULT_VIEW).and_then(|s| s.parse().ok()),
         volume: map.get(VOLUME).and_then(|s| s.parse().ok()),
+        playback_speed: map.get(PLAYBACK_SPEED).and_then(|s| s.parse().ok()),
         refresh_on_start: map.get(REFRESH_ON_START).and_then(|s| s.parse().ok()),
         restream_port: map.get(RESTREAM_PORT).and_then(|s| s.parse().ok()),
         enable_tray_icon: map.get(ENABLE_TRAY_ICON).and_then(|s| s.parse().ok()),
@@ -58,6 +60,9 @@ pub fn update_settings(settings: Settings) -> Result<()> {
     }
     if let Some(volume) = settings.volume {
         map.insert(VOLUME.to_string(), volume.to_string());
+    }
+    if let Some(playback_speed) = settings.playback_speed {
+        map.insert(PLAYBACK_SPEED.to_string(), playback_speed.to_string());
     }
     if let Some(refresh_on_start) = settings.refresh_on_start {
         map.insert(REFRESH_ON_START.to_string(), refresh_on_start.to_string());

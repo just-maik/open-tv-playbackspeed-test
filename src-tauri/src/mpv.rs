@@ -43,10 +43,11 @@ pub async fn play(
     channel: Channel,
     record: bool,
     record_path: Option<String>,
+    speed: Option<f32>,
     state: State<'_, Mutex<AppState>>,
 ) -> Result<()> {
     println!("{} playing", channel.url.as_ref().unwrap());
-    let args = get_play_args(&channel, record, record_path)?;
+    let args = get_play_args(&channel, record, record_path, speed)?;
     println!("with args: {:?}", args);
 
     let cmd = Command::new(MPV_PATH.clone())
@@ -123,6 +124,7 @@ fn get_play_args(
     channel: &Channel,
     record: bool,
     record_path: Option<String>,
+    speed: Option<f32>,
 ) -> Result<Vec<String>> {
     let mut args = Vec::new();
     let settings = get_settings()?;
@@ -177,6 +179,14 @@ fn get_play_args(
         #[cfg(target_os = "windows")]
         let mut params = winsplit::split(&mpv_params);
         args.append(&mut params);
+    }
+    // Apply playback speed: explicit speed overrides settings.playback_speed
+    if let Some(sp) = speed {
+        let sp = sp.clamp(0.25, 3.0);
+        args.push(format!("--speed={}", sp));
+    } else if let Some(s) = settings.playback_speed {
+        let s = s.clamp(0.25, 3.0);
+        args.push(format!("--speed={}", s));
     }
     Ok(args)
 }

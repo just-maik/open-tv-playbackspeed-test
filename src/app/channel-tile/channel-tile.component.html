@@ -65,6 +65,19 @@
     <button [hidden]="!isLivestream()" mat-menu-item (click)="openRestreamModal()">
       Re-stream
     </button>
+
+    <!-- Playback speed options -->
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="click(false)">Play (default)</button>
+    <button mat-menu-item (click)="click(false, 0.25)">Play 0.25x</button>
+    <button mat-menu-item (click)="click(false, 0.5)">Play 0.5x</button>
+    <button mat-menu-item (click)="click(false, 0.75)">Play 0.75x</button>
+    <button mat-menu-item (click)="click(false, 1)">Play 1x</button>
+    <button mat-menu-item (click)="click(false, 1.25)">Play 1.25x</button>
+    <button mat-menu-item (click)="click(false, 1.5)">Play 1.5x</button>
+    <button mat-menu-item (click)="click(false, 2)">Play 2x</button>
+    <button mat-menu-item (click)="click(false, 3)">Play 3x</button>
+
     <button [hidden]="!isCustom()" mat-menu-item (click)="delete()">Delete</button>
   </ng-template>
 </mat-menu>

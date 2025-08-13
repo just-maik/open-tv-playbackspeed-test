@@ -22,6 +22,7 @@ export class SettingsComponent {
     use_stream_caching: true,
     default_view: ViewMode.All,
     volume: 100,
+    playback_speed: 1,
     restream_port: 3000,
     enable_tray_icon: true,
     zoom: 100,
@@ -82,6 +83,7 @@ export class SettingsComponent {
       if (this.settings.use_stream_caching == undefined) this.settings.use_stream_caching = true;
       if (this.settings.default_view == undefined) this.settings.default_view = ViewMode.All;
       if (this.settings.volume == undefined) this.settings.volume = 100;
+      if (this.settings.playback_speed == undefined) this.settings.playback_speed = 1;
       if (this.settings.restream_port == undefined) this.settings.restream_port = 3000;
       if (this.settings.enable_tray_icon == undefined) this.settings.enable_tray_icon = true;
       if (this.settings.zoom == undefined) this.settings.zoom = 100;

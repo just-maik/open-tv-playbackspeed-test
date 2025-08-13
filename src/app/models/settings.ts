@@ -4,6 +4,7 @@ export class Settings {
   mpv_params?: string;
   default_view?: number;
   volume?: number;
+  playback_speed?: number;
   refresh_on_start?: boolean;
   restream_port?: number;
   enable_tray_icon?: boolean;

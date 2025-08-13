@@ -68,6 +68,7 @@ pub struct Settings {
     pub use_stream_caching: Option<bool>,
     pub default_view: Option<u8>,
     pub volume: Option<u8>,
+    pub playback_speed: Option<f32>,
     pub refresh_on_start: Option<bool>,
     pub restream_port: Option<u16>,
     pub enable_tray_icon: Option<bool>,
